@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NUTRIFIT - Gym & Nutrition</title>
+<style>
+* {box-sizing:border-box;margin:0;padding:0}
+body {
+  background:#10120f;color:white;
+  font-family:Arial,sans-serif;line-height:1.6;
+}
+header {
+  background:#191e17;padding:20px 7%;
+  display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;
+}
+.logo {font-size:27px;font-weight:bold;color:#b5ff35}
+nav a {
+  color:white;text-decoration:none;
+  margin:10px;font-size:14px;
+}
+nav a:hover {color:#b5ff35}
+.hero {
+  padding:110px 8%;
+  background:linear-gradient(90deg,#10120f,#10120faa),
+  url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1400') center/cover;
+}
+.hero h1 {font-size:55px;line-height:1.15}
+.hero span {color:#b5ff35}
+.hero p {margin-top:20px;color:#ddd;max-width:550px}
+button {
+  background:#b5ff35;color:#111;
+  padding:12px 22px;border:0;
+  border-radius:5px;font-weight:bold;
+  cursor:pointer;margin-top:15px;
+}
+section {padding:65px 8%}
+h2 {font-size:32px;text-align:center;margin-bottom:30px}
+h2 span,h3 {color:#b5ff35}
+.subtitle {text-align:center;color:#aaa;margin-top:-20px;margin-bottom:30px}
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+}
+.card {
+  background:#1b2119;border:1px solid #343b30;
+  border-radius:10px;overflow:hidden;padding-bottom:20px;
+}
+.card img {width:100%;height:170px;object-fit:cover}
+.card h3,.card p,.card button {margin-left:18px;margin-right:18px}
+.card h3 {margin-top:15px}
+.card p {color:#ccc;margin-top:10px;font-size:14px}
+.dark {background:#181d16}
+.calculator {
+  max-width:550px;margin:20px auto;
+  background:#1b2119;padding:25px;border-radius:10px;
+}
+input,select {
+  display:block;width:100%;padding:12px;
+  margin:10px 0;background:#10120f;
+  border:1px solid #555;color:white;border-radius:5px;
+}
+.result {color:#b5ff35;margin-top:15px;display:none}
+footer {padding:30px;text-align:center;color:#aaa}
+.modal {
+  display:none;position:fixed;inset:0;
+  background:#000c;z-index:20;
+  justify-content:center;align-items:center;padding:20px;
+}
+.modal.active {display:flex}
+.modal-content {
+  background:#1b2119;border:1px solid #b5ff35;
+  border-radius:12px;padding:30px;
+  max-width:500px;width:100%;
+}
+.close {float:right;font-size:25px;background:none;color:white;padding:0;margin:0}
+@media(max-width:600px){
+ .hero h1{font-size:40px}
+ header{gap:15px}
+}
+</style>
+</head>
+<body>
+
+<header>
+ <div class="logo">NUTRIFIT.</div>
+ <nav>
+  <a href="#home">Home</a>
+  <a href="#nutrition">Nutrition</a>
+  <a href="#workouts">Workouts</a>
+  <a href="#supplements">Supplements</a>
+  <a href="#calculator">Calculator</a>
+ </nav>
+</header>
+
+<div class="hero" id="home">
+ <h1>BUILD YOUR <span>BODY.</span><br>FUEL YOUR LIFE.</h1>
+ <p>Learn about nutrition, muscle building, exercise and healthy living. Everything you need to start your fitness journey.</p>
+ <button onclick="showInfo('Welcome to NUTRIFIT','Your fitness journey begins with knowledge. Explore our nutrition guides, training programs and fitness calculators!')">START EXPLORING</button>
+</div>
+
+<section id="nutrition">
+ <h2>THE SCIENCE OF <span>NUTRITION</span></h2>
+ <p class="subtitle">Understand the nutrients your body needs.</p>
+ <div class="grid">
+  <div class="card">
+   <img src="https://images.unsplash.com/photo-1607623814075-e51df1bdc82f?w=600">
+   <h3>Protein</h3>
+   <p>Protein helps repair and build muscle tissue. Sources include chicken, eggs, fish, yogurt and beans.</p>
+   <button onclick="showInfo('Protein','Protein contains 4 calories per gram. It provides amino acids needed for muscle repair and growth. Exercising adults often benefit from around 1.4–2.0 grams per kg of body weight daily.')">Learn More</button>
+  </div>
+  <div class="card">
+   <img src="https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=600">
+   <h3>Carbohydrates</h3>
+   <p>Carbohydrates provide energy for your workouts and everyday activities.</p>
+   <button onclick="showInfo('Carbohydrates','Carbohydrates provide 4 calories per gram. Good sources include rice, oats, potatoes, fruit and whole grains. They help replenish muscle glycogen.')">Learn More</button>
+  </div>
+  <div class="card">
+   <img src="https://images.unsplash.com/photo-1474979266404-7eaacbcd87c5?w=600">
+   <h3>Healthy Fats</h3>
+   <p>Fats support hormone production, brain function and vitamin absorption.</p>
+   <button onclick="showInfo('Healthy Fats','Fat provides 9 calories per gram. Healthy sources include avocado, olive oil, nuts, seeds and fatty fish.')">Learn More</button>
+  </div>
+  <div class="card">
+   <img src="https://images.unsplash.com/photo-1540420773420-3366772f4999?w=600">
+   <h3>Vitamins & Minerals</h3>
+   <p>Essential nutrients that support immunity, bones and muscle function.</p>
+   <button onclick="showInfo('Vitamins and Minerals','Vitamin D supports bone health. Iron helps transport oxygen. Calcium supports bones and muscle function. Eat a variety of vegetables, fruits and whole foods.')">Learn More</button>
+  </div>
+ </div>
+</section>
+
+<section class="dark" id="workouts">
+ <h2>GYM <span>WORKOUTS</span></h2>
+ <p class="subtitle">Discover different types of training.</p>
+ <div class="grid">
+  <div class="card">
+   <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?w=600">
+   <h3>Strength Training</h3>
+   <p>Build strength through squats, bench press, rows and deadlifts.</p>
+   <button onclick="showInfo('Strength Training','Start with 2–3 sessions per week. Focus on good technique, controlled movement and gradual increases in resistance.')">Learn More</button>
+  </div>
+  <div class="card">
+   <img src="https://images.unsplash.com/photo-1538805060514-97d9cc17730c?w=600">
+   <h3>Cardio</h3>
+   <p>Improve endurance with running, swimming, cycling and walking.</p>
+   <button onclick="showInfo('Cardio','Adults should aim for at least 150 minutes of moderate aerobic exercise each week, alongside strength training.')">Learn More</button>
+  </div>
+  <div class="card">
+   <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=600">
+   <h3>Muscle Building</h3>
+   <p>Use progressive resistance training and proper recovery to grow muscle.</p>
+   <button onclick="showInfo('Muscle Building','Muscle growth requires challenging workouts, adequate protein, sufficient energy and recovery. Consistency is essential.')">Learn More</button>
+  </div>
+ </div>
+</section>
+
+<section id="supplements">
+ <h2>SPORTS <span>SUPPLEMENTS</span></h2>
+ <div class="grid">
+  <div class="card" style="padding:20px">
+   <h3>Whey Protein</h3>
+   <p>A convenient way to increase daily protein intake.</p>
+   <button onclick="showInfo('Whey Protein','Whey is a complete milk protein containing all essential amino acids. It is optional if your diet already provides enough protein.')">Read More</button>
+  </div>
+  <div class="card" style="padding:20px">
+   <h3>Creatine</h3>
+   <p>Supports strength and repeated high-intensity exercise.</p>
+   <button onclick="showInfo('Creatine','Creatine monohydrate is one of the most researched sports supplements. A common maintenance dose is 3–5 grams daily.')">Read More</button>
+  </div>
+  <div class="card" style="padding:20px">
+   <h3>Caffeine</h3>
+   <p>Can improve alertness and exercise performance.</p>
+   <button onclick="showInfo('Caffeine','Caffeine is a stimulant. Too much can cause anxiety, palpitations and sleep problems. Individual sensitivity varies.')">Read More</button>
+  </div>
+ </div>
+</section>
+
+<section class="dark" id="calculator">
+ <h2>FITNESS <span>CALCULATORS</span></h2>
+ <div class="calculator">
+  <h3>BMI Calculator</h3>
+  <label>Weight (kg)</label>
+  <input type="number" id="weight" placeholder="Example: 75">
+  <label>Height (cm)</label>
+  <input type="number" id="height" placeholder="Example: 180">
+  <button onclick="bmi()">Calculate BMI</button>
+  <div id="bmiResult" class="result"></div>
+ </div>
+ <div class="calculator">
+  <h3>Protein Calculator</h3>
+  <label>Weight (kg)</label>
+  <input type="number" id="proteinWeight" placeholder="Example: 75">
+  <label>Training level</label>
+  <select id="level">
+   <option value="0.8">General adult baseline</option>
+   <option value="1.2">Light activity</option>
+   <option value="1.6">Regular gym training</option>
+   <option value="2">High training needs</option>
+  </select>
+  <button onclick="protein()">Calculate Protein</button>
+  <div id="proteinResult" class="result"></div>
+ </div>
+</section>
+
+<section>
+ <h2>10 GOLDEN <span>FITNESS RULES</span></h2>
+ <div class="calculator">
+  <ol>
+   <li>Eat a balanced diet.</li>
+   <li>Consume enough protein.</li>
+   <li>Drink water regularly.</li>
+   <li>Exercise consistently.</li>
+   <li>Prioritize proper technique.</li>
+   <li>Get 7–9 hours of sleep.</li>
+   <li>Allow your muscles to recover.</li>
+   <li>Eat fruits and vegetables.</li>
+   <li>Increase training difficulty gradually.</li>
+   <li>Be patient and stay consistent.</li>
+  </ol>
+ </div>
+</section>
+
+<footer>
+ <h2>NUTRIFIT.</h2>
+ <p>Train smart. Eat well. Live better.</p>
+ <p>© 2026 NUTRIFIT</p>
+ <p>Educational information only, not medical advice.</p>
+</footer>
+
+<div class="modal" id="modal" onclick="outside(event)">
+ <div class="modal-content">
+  <button class="close" onclick="closeModal()">×</button>
+  <h2 id="modalTitle" style="color:#b5ff35;text-align:left">Information</h2>
+  <p id="modalText"></p>
+  <button onclick="closeModal()">CLOSE</button>
+ </div>
+</div>
+
+<script>
+function showInfo(title,text){
+ document.getElementById('modalTitle').textContent=title;
+ document.getElementById('modalText').textContent=text;
+ document.getElementById('modal').classList.add('active');
+}
+function closeModal(){
+ document.getElementById('modal').classList.remove('active');
+}
+function outside(e){
+ if(e.target.id==='modal')closeModal();
+}
+document.addEventListener('keydown',e=>{
+ if(e.key==='Escape')closeModal();
+});
+
+function bmi(){
+ let w=Number(document.getElementById('weight').value);
+ let h=Number(document.getElementById('height').value)/100;
+ if(w<=0||h<=0||!Number.isFinite(w)||!Number.isFinite(h)){
+  alert('Enter a valid weight and height');
+  return;
+ }
+ let value=w/(h*h);
+ let category=value<18.5?'Below standard adult range':
+ value<25?'Standard adult range':
+ value<30?'Above standard adult range':'Obesity BMI range';
+ let r=document.getElementById('bmiResult');
+ r.style.display='block';
+ r.innerHTML='Your BMI: '+value.toFixed(1)+'<br>'+category;
+}
+
+function protein(){
+ let w=Number(document.getElementById('proteinWeight').value);
+ let level=Number(document.getElementById('level').value);
+ if(w<=0||!Number.isFinite(w)){
+  alert('Enter a valid weight');
+  return;
+ }
+ let r=document.getElementById('proteinResult');
+ r.style.display='block';
+ r.innerHTML='Estimated protein: '+Math.round(w*level)+' grams per day';
+}
+</script>
+</body>
+</html>
